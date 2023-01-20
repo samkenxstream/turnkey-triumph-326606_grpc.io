@@ -92,9 +92,9 @@ on the server side.
 - On the client side, the client has a local object known as *stub* (for some
   languages, the preferred term is *client*) that implements the same methods as
   the service. The client can then just call those methods on the local object,
-  wrapping the parameters for the call in the appropriate protocol buffer
-  message type - gRPC looks after sending the request(s) to the server and
-  returning the server's protocol buffer response(s).
+  and the methods wrap the parameters for the call in the appropriate protocol buffer
+  message type, send the requests to the server, and return the server's 
+  protocol buffer responses.
 
 #### Synchronous vs. asynchronous
 
@@ -197,7 +197,12 @@ terminates the RPC immediately so that no further work is done.
 Metadata is information about a particular RPC call (such as [authentication
 details](/docs/guides/auth/)) in the form of a list of key-value pairs, where the
 keys are strings and the values are typically strings, but can be binary data.
-Metadata is opaque to gRPC itself - it lets the client provide information
+
+Keys are case insensitive and consist of ASCII letters, digits, and special characters `-`, `_`,
+`.` and must not start with `grpc-` (which is reserved for gRPC itself).
+Binary-valued keys end in `-bin` while ASCII-valued keys do not.
+
+User-defined metadata is not used by gRPC, which allows the client to provide information
 associated with the call to the server and vice versa.
 
 Access to metadata is language dependent.

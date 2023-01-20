@@ -7,7 +7,7 @@ weight: 10
 
 ### Prerequisites
 
-- Python 3.5 or higher
+- Python 3.7 or higher
 - `pip` version 9.0.1 or higher
 
 If necessary, upgrade your version of `pip`:
@@ -151,7 +151,7 @@ service definition.
 From the `examples/python/helloworld` directory, run:
 
 ```sh
-$ python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/helloworld.proto
+$ python -m grpc_tools.protoc -I../../protos --python_out=. --pyi_out=. --grpc_python_out=. ../../protos/helloworld.proto
 ```
 
 This regenerates `helloworld_pb2.py` which contains our generated request and
